@@ -53,6 +53,7 @@ contract PmknFarm {
             "Nothing to unstake"
         );
         uint256 yieldTransfer = calculateYieldTotal(msg.sender);
+        startTime[msg.sender] = block.timestamp;
         uint256 balTransfer = amount;
         amount = 0;
         stakingBalance[msg.sender] -= balTransfer;

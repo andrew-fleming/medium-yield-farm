@@ -157,5 +157,15 @@ describe("PmknFarm", () => {
                 .to.be.approximately(10, .001)
         })
 
+        it("should return correct yield after partial unstake", async() => {
+            await time.increase(86400)
+            await pmknFarm.connect(alice).unstake(ethers.utils.parseEther("5"))
+            await time.increase(86400)
+            await pmknFarm.connect(alice).withdrawYield()
+            res = await pmknToken.balanceOf(alice.address)
+            expect(Number(ethers.utils.formatEther(res)))
+                .to.be.approximately(15, .001)
+        })
+
     })
 })
